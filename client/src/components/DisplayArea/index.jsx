@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
+import MovieCard from "../MovieCard";
 
 const DisplayArea = ({ dataset }) => {
   const [displayedMovies, setDisplayedMovies] = useState([]);
@@ -29,7 +30,7 @@ const DisplayArea = ({ dataset }) => {
   };
 
   return (
-    <Box>
+    <Box className="parent-container">
       <InfiniteScroll
         dataLength={displayedMovies.length}
         next={handleChange}
@@ -37,11 +38,23 @@ const DisplayArea = ({ dataset }) => {
         loader={<h4>Loading</h4>}
         endMessage={<p>That's all folks! No more movies to see!</p>}
       >
-        <Box>
+        <Box
+          className="content-container"
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "auto auto auto auto",
+            gap: "20px",
+          }}
+        >
           {displayedMovies.map((movie) => (
-            <div key={movie.id}>
-              <h3>{movie.title}</h3>
-            </div>
+            <MovieCard
+              key={movie.id}
+              title={movie.title}
+              imageURL={movie.poster}
+              releaseDate={movie["release_date"]}
+              voteAvg={movie["vote_average"]}
+              voteCount={movie["vote_count"]}
+            />
           ))}
         </Box>
       </InfiniteScroll>
