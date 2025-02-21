@@ -9,19 +9,23 @@ const DisplayArea = ({ dataset }) => {
   const pages = Math.floor(dataset.length / moviesPerPage);
 
   useEffect(() => {
-    setDisplayedMovies(dataset.slice(0, moviesPerPage));
-  }, []);
+    if (dataset.length > 0) {
+      setDisplayedMovies(dataset.slice(0, moviesPerPage));
+    }
+  }, [dataset, moviesPerPage]);
 
   const handleChange = (event) => {
     if (displayedMovies.length >= dataset.length) {
       return;
     }
 
-    setDisplayedMovies((prevMovies) => [
-      ...prevMovies,
-      ...dataset.slice(prevMovies.length, prevMovies.length + moviesPerPage),
-    ]);
-    setPage((prevPage) => prevPage + 1);
+    setTimeout(() => {
+      setDisplayedMovies((prevMovies) => [
+        ...prevMovies,
+        ...dataset.slice(prevMovies.length, prevMovies.length + moviesPerPage),
+      ]);
+      setPage((prevPage) => prevPage + 1);
+    }, 500);
   };
 
   return (
@@ -34,11 +38,11 @@ const DisplayArea = ({ dataset }) => {
         endMessage={<p>That's all folks! No more movies to see!</p>}
       >
         <Box>
-          {displayedMovies.map((movie) => {
+          {displayedMovies.map((movie) => (
             <div key={movie.id}>
               <h3>{movie.title}</h3>
-            </div>;
-          })}
+            </div>
+          ))}
         </Box>
       </InfiniteScroll>
     </Box>
