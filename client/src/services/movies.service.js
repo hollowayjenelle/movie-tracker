@@ -7,12 +7,10 @@ const http = axios.create({
   },
 });
 
-const getAll = () => {
+export const getAll = () => {
   return http.get("/movies");
 };
 
-const findByTitle = (title) => {
+export const findByTitle = (title) => {
   return http.get(`/movies/movie?title=${title}`);
 };
-
-export default { getAll, findByTitle };

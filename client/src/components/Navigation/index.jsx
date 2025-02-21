@@ -8,7 +8,7 @@ import {
   Button,
   TextField,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+import { findByTitle } from "../../services/movies.service";
 
 const Navigation = () => {
   const [searchData, setSearchData] = useState({
@@ -22,7 +22,15 @@ const Navigation = () => {
   };
 
   const handleSubmit = (event) => {
-    alert("This works");
+    event.preventDefault();
+    const { searchType, searchWord } = searchData;
+
+    switch (searchType) {
+      case "Movie":
+        findByTitle(searchWord).then((response) => {
+          console.log(response.data);
+        });
+    }
   };
   return (
     <Box component="nav">

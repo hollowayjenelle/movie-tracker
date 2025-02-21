@@ -2,11 +2,11 @@ import express from "express";
 import {
   getAllMovies,
   getMovieByKeyword,
-} from "../controllers/moviesController";
+} from "../controllers/moviesController.js";
 
-const router = express.Router();
+const moviesRouter = express.Router();
 
-router.get("/", getAllMovies);
-router.get("/movie", getMovieByKeyword);
+moviesRouter.get("/", getAllMovies);
+moviesRouter.get("/movie", getMovieByKeyword);
 
-export default router;
+export default moviesRouter;
