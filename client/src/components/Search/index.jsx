@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { findByTitle } from "../../services/movies.service";
 
-const Navigation = () => {
+const Search = () => {
   const [searchData, setSearchData] = useState({
     searchType: "All",
     searchWord: "",
@@ -34,9 +34,6 @@ const Navigation = () => {
   };
   return (
     <Box component="nav">
-      <Box>
-        <Typography>Movie Tracker</Typography>
-      </Box>
       <form onSubmit={handleSubmit}>
         <FormGroup>
           <Select
@@ -68,4 +65,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default Search;

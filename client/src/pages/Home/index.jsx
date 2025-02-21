@@ -1,10 +1,10 @@
 import React from "react";
-import Navigation from "../../components/Navigation";
+import Search from "../../components/Search";
 
 const HomePage = () => {
   return (
     <div>
-      <Navigation />
+      <Search />
     </div>
   );
 };
