@@ -6,7 +6,7 @@ import {
 
 const router = express.Router();
 
-router.get("/getAllMovies", getAllMovies);
-router.get("/getMovieByKeyword", getMovieByKeyword);
+router.get("/", getAllMovies);
+router.get("/movie", getMovieByKeyword);
 
 export default router;
