@@ -9,6 +9,7 @@ import {
   TextField,
 } from "@mui/material";
 import { findByTitle } from "../../services/movies.service";
+import "./index.css";
 
 const Search = () => {
   const [searchData, setSearchData] = useState({
@@ -33,31 +34,34 @@ const Search = () => {
     }
   };
   return (
-    <Box component="nav">
-      <form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Select
-            id="search-select"
-            name="searchType"
-            value={searchData.searchType}
-            label="Search"
-            onChange={handleChange}
-          >
-            <MenuItem value={"All"}>All</MenuItem>
-            <MenuItem value={"Genre"}>Genre</MenuItem>
-            <MenuItem value={"Movie"}>Movie</MenuItem>
-          </Select>
-          <TextField
-            required
-            id="outlined"
-            placeholder="Search"
-            value={searchData.searchWord}
-            name="searchWord"
-            variant="outlined"
-            onChange={handleChange}
-          />
-        </FormGroup>
-        <Button type="submit" variant="contained" color="primary">
+    <Box component="nav" className="parent-container" sx={{ padding: "24px" }}>
+      <form className="content-container search-form" onSubmit={handleSubmit}>
+        <Select
+          id="search-select"
+          name="searchType"
+          value={searchData.searchType}
+          label="Search"
+          onChange={handleChange}
+        >
+          <MenuItem value={"All"}>All</MenuItem>
+          <MenuItem value={"Genre"}>Genre</MenuItem>
+          <MenuItem value={"Movie"}>Movie</MenuItem>
+        </Select>
+        <TextField
+          required
+          id="outlined"
+          placeholder="Search"
+          value={searchData.searchWord}
+          name="searchWord"
+          variant="outlined"
+          onChange={handleChange}
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          size="medium"
+          sx={{ padding: "14px 24px", marginLeft: "12px" }}
+        >
           Search
         </Button>
       </form>
