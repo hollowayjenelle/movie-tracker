@@ -8,12 +8,12 @@ import {
   Button,
   TextField,
 } from "@mui/material";
-import { findByTitle } from "../../services/movies.service";
+import { findByTitle, getAll } from "../../services/movies.service";
 import "./index.css";
 
-const Search = () => {
+const Search = ({ handleUpdate }) => {
   const [searchData, setSearchData] = useState({
-    searchType: "All",
+    searchType: "Movie",
     searchWord: "",
   });
 
@@ -29,7 +29,7 @@ const Search = () => {
     switch (searchType) {
       case "Movie":
         findByTitle(searchWord).then((response) => {
-          console.log(response.data);
+          handleUpdate(response.data);
         });
     }
   };
@@ -43,7 +43,6 @@ const Search = () => {
           label="Search"
           onChange={handleChange}
         >
-          <MenuItem value={"All"}>All</MenuItem>
           <MenuItem value={"Genre"}>Genre</MenuItem>
           <MenuItem value={"Movie"}>Movie</MenuItem>
         </Select>

@@ -15,7 +15,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <Search />
+      <Search handleUpdate={setCurrentData} />
       <DisplayArea dataset={currentData} />
     </div>
   );
