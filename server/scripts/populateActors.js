@@ -33,14 +33,18 @@ const populateActors = async () => {
           console.log(`Skipping actor at index ${j}, actor is undefined.`);
           continue;
         }
-        const doesActorExist = await Actor.findOne({ where: { id: actor.id } });
-        if (!doesActorExist) {
+        const existingActor = await Actor.findOne({ where: { id: actor.id } });
+        if (!existingActor) {
           const newActor = await Actor.create({
             id: actor.id,
             name: actor.name,
           });
           await newActor.addMovie(allMovies[i]);
         } else {
+          const existingRelation = await existingActor.hasMovie(allMovies[i]);
+          if (!existingRelation) {
+            await existingActor.addMovie(allMovies[i]);
+          }
           console.log(`Actor ${actor.name} already exists in database`);
         }
       }

@@ -15,7 +15,6 @@ export const getAllMoviesByActor = (req, res) => {
     include: Movie,
   })
     .then((result) => {
-      console.log(result);
       return res.json(result);
     })
     .catch((error) => {

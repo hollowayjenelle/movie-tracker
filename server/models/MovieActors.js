@@ -8,7 +8,6 @@ const MovieActors = sequelize.define("MovieActors", {
       model: "movies",
       key: "id",
     },
-    primaryKey: true,
     onDelete: "CASCADE",
   },
   actorId: {
@@ -17,7 +16,6 @@ const MovieActors = sequelize.define("MovieActors", {
       model: "actors",
       key: "id",
     },
-    primaryKey: true,
     onDelete: "CASCADE",
   },
 });

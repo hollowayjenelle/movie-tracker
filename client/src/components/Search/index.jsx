@@ -8,7 +8,7 @@ import {
   Button,
   TextField,
 } from "@mui/material";
-import { getAll } from "../../services/movies.service";
+import { findByTitle, getAll } from "../../services/movies.service";
 import { findByActor } from "../../services/actors.service";
 import "./index.css";
 
@@ -26,17 +26,23 @@ const Search = ({ handleUpdate }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const { searchType, searchWord } = searchData;
-    console.log(searchType);
 
     switch (searchType) {
       case "Movie":
-        getAll(searchWord).then((response) => {
+        findByTitle(searchWord).then((response) => {
           handleUpdate(response.data);
         });
+        break;
       case "Actor":
         findByActor(searchWord).then((response) => {
-          console.log(response);
+          const data = response.data;
+          let movies = [];
+          data.forEach((actor) => {
+            movies = movies.concat(actor.movies);
+          });
+          handleUpdate(movies);
         });
+        break;
     }
   };
   return (
