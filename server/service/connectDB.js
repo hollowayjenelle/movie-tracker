@@ -11,6 +11,7 @@ export const connectDB = async () => {
     console.log("Tables created successfully");
 
     associate();
+    console.log("created associations");
 
     await populateAll();
     console.log("Tables are populated");

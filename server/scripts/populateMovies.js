@@ -14,7 +14,7 @@ const populateMovies = async () => {
         Authorization: `Bearer ${process.env.API_READ_ACCESS_TOKEN}`,
       },
     };
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 3; i++) {
       const updatedOptions = {
         ...options,
         params: { language: "en", page: i.toString() },
@@ -28,7 +28,6 @@ const populateMovies = async () => {
 
       movies.forEach(async (movie) => {
         const doesMovieExist = await Movie.findOne({ where: { id: movie.id } });
-        //Rename variable
         if (!doesMovieExist) {
           const newMovieEntry = await Movie.create({
             id: movie.id,
@@ -46,7 +45,7 @@ const populateMovies = async () => {
             });
           }
         } else {
-          console.log(`Movie ${movie.id} already exists in database`);
+          console.log(`Movie ${movie.title} already exists in database`);
         }
       });
 
