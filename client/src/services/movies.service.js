@@ -12,5 +12,5 @@ export const getAll = () => {
 };
 
 export const findByTitle = (title) => {
-  return http.get(`/movies/movie?title=${title}`);
+  return http.get(`/movies?title=${title}`);
 };
