@@ -14,12 +14,12 @@ const populateGenres = async () => {
       },
     };
     const response = await axios.request(options);
-    const genres = response.data.generes || {};
+
+    const genres = response.data.genres || {};
 
     if (!genres) {
       console.error("No genres available");
     }
-
     await Genre.bulkCreate(genres, { ignoreDuplicates: true });
     console.log("Genres successfully added!");
   } catch (error) {

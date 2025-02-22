@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { findByTitle, getAll } from "../../services/movies.service";
 import { findByActor } from "../../services/actors.service";
+import { findByGenre } from "../../services/genres.service";
 import "./index.css";
 
 const Search = ({ handleUpdate }) => {
@@ -41,6 +42,11 @@ const Search = ({ handleUpdate }) => {
             movies = movies.concat(actor.movies);
           });
           handleUpdate(movies);
+        });
+        break;
+      case "Genre":
+        findByGenre(searchWord).then((response) => {
+          handleUpdate(response.data[0].movies);
         });
         break;
     }

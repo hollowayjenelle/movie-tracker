@@ -1,14 +1,15 @@
 import { Op } from "sequelize";
-import Actor from "../models/actor.js";
 import Movie from "../models/movie.js";
+import Genre from "../models/genre.js";
 
-export const getAllMoviesByActor = (req, res) => {
-  const actor = req.query.name;
-  Actor.findAll({
+const getAllMoviesByGenre = (req, res) => {
+  const genre = req.query.genre;
+  console.log(genre);
+  Genre.findAll({
     attributes: { exclude: ["createdAt", "updatedAt"] },
     where: {
       name: {
-        [Op.substring]: actor,
+        [Op.iLike]: genre,
       },
     },
     include: Movie,
@@ -23,3 +24,5 @@ export const getAllMoviesByActor = (req, res) => {
       });
     });
 };
+
+export default getAllMoviesByGenre;
