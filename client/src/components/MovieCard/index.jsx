@@ -49,10 +49,10 @@ const MovieCard = ({
       <CardMedia
         image={`https://image.tmdb.org/t/p/original${imageURL}`}
         title={title}
-        sx={{ height: 350 }}
+        sx={{ height: 350, width: 300 }}
       />
       <CardContent>
-        <Typography>{title}</Typography>
+        <Typography sx={{}}>{title}</Typography>
         <Typography>{releaseDate}</Typography>
         <Typography>
           {voteAvg.toFixed(1)} - {voteCount}
