@@ -17,3 +17,15 @@ html {
   max-width: 1440px;
   width: 100%;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+  margin-right: 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}

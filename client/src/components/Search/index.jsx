@@ -43,7 +43,7 @@ const Search = ({ handleUpdate }) => {
     }
   };
   return (
-    <Box component="nav" className="parent-container" sx={{ padding: "24px" }}>
+    <Box className="parent-container" sx={{ padding: "24px", marginTop: 10 }}>
       <form className="content-container search-form" onSubmit={handleSubmit}>
         <Select
           id="search-select"
