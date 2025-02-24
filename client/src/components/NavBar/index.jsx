@@ -6,7 +6,7 @@ const NavBar = () => {
     <Box
       component="nav"
       sx={{
-        bgcolor: "secondary.main",
+        bgcolor: "primary.main",
         padding: "20px",
         width: "100%",
         position: "fixed",

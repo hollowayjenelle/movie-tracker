@@ -3,6 +3,10 @@ import { createTheme } from "@mui/material";
 const theme = createTheme({
   typography: {
     fontFamily: "'Poppins', sans-serif",
+    h1: {
+      fontSize: 36,
+      fontWeight: 800,
+    },
     h3: {
       fontSize: 24,
       fontWeight: 700,
