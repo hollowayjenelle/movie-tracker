@@ -8,12 +8,14 @@ import {
   Button,
   TextField,
 } from "@mui/material";
-import { findByTitle, getAll } from "../../services/movies.service";
-import { findByActor } from "../../services/actors.service";
-import { findByGenre } from "../../services/genres.service";
+import { getByTitle } from "../../store/thunks/getByTitlethunk";
+import { getByActor } from "../../store/thunks/getByActorthunk";
+import { getByGenre } from "../../store/thunks/getByGenrethunk";
+import { useDispatch } from "react-redux";
 import "./index.css";
 
 const Search = ({ handleUpdate }) => {
+  const dispatch = useDispatch();
   const [searchData, setSearchData] = useState({
     searchType: "Movie",
     searchWord: "",
@@ -30,24 +32,13 @@ const Search = ({ handleUpdate }) => {
 
     switch (searchType) {
       case "Movie":
-        findByTitle(searchWord).then((response) => {
-          handleUpdate(response.data);
-        });
+        dispatch(getByTitle(searchWord));
         break;
       case "Actor":
-        findByActor(searchWord).then((response) => {
-          const data = response.data;
-          let movies = [];
-          data.forEach((actor) => {
-            movies = movies.concat(actor.movies);
-          });
-          handleUpdate(movies);
-        });
+        dispatch(getByActor(searchWord));
         break;
       case "Genre":
-        findByGenre(searchWord).then((response) => {
-          handleUpdate(response.data[0].movies);
-        });
+        dispatch(getByGenre(searchWord));
         break;
     }
   };
