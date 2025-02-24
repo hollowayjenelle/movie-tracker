@@ -1,11 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { Box } from "@mui/material";
+import DisplayArea from "../../components/DisplayArea";
 
 const WatchedMoviesPage = () => {
   const watchedMovies = useSelector((state) => state.watchedMovies.movies);
-  const dispatch = useDispatch();
 
-  return <div></div>;
+  return <DisplayArea dataset={watchedMovies} />;
 };
 
 export default WatchedMoviesPage;

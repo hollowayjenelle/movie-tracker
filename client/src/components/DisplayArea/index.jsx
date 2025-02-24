@@ -52,9 +52,9 @@ const DisplayArea = ({ dataset }) => {
               id={movie.id}
               title={movie.title}
               imageURL={movie.poster}
-              releaseDate={movie["release_date"]}
-              voteAvg={movie["vote_average"]}
-              voteCount={movie["vote_count"]}
+              releaseDate={movie.release_date}
+              voteAvg={movie.vote_average}
+              voteCount={movie.vote_count}
             />
           ))}
         </Box>

@@ -8,8 +8,13 @@ export const watchedMoviesSlice = createSlice({
   initialState,
   reducers: {
     addToWatched: (state, action) => {
-      state.movies.push(action.payload);
-      localStorage.setItem("watchedMovies", JSON.stringify(state.movies));
+      const hasWatched = state.movies.find(
+        (movie) => movie.title === action.payload.title
+      );
+      if (!hasWatched) {
+        state.movies.push(action.payload);
+        localStorage.setItem("watchedMovies", JSON.stringify(state.movies));
+      }
     },
   },
 });

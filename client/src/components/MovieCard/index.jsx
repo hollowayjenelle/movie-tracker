@@ -6,6 +6,8 @@ import {
   CardActions,
   Typography,
   Button,
+  Rating,
+  Box,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import RatingDialog from "../RatingDialog";
@@ -18,7 +20,6 @@ const MovieCard = ({
   voteAvg,
   voteCount,
   id,
-  userRating = null,
 }) => {
   const watchedMovies = useSelector((state) => state.watchedMovies.movies);
   const [rating, setRating] = useState(2);
@@ -56,9 +57,23 @@ const MovieCard = ({
         <Typography>
           {voteAvg.toFixed(1)} - {voteCount}
         </Typography>
+        <Box>
+          {hasWatched && (
+            <Rating
+              name="user-rating"
+              defaultValue={hasWatched.user_rating}
+              precision={0.5}
+              readOnly
+            />
+          )}
+        </Box>
       </CardContent>
       <CardActions>
-        <Button onClick={handleOpenDialog}>Add to Watch List</Button>
+        {hasWatched ? (
+          <Button disabled>Already Watched and Rated!</Button>
+        ) : (
+          <Button onClick={handleOpenDialog}>Add to Watch List</Button>
+        )}
       </CardActions>
       <RatingDialog
         onSetRating={setRating}
