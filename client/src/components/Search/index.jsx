@@ -51,6 +51,7 @@ const Search = ({ handleUpdate }) => {
           value={searchData.searchType}
           label="Search"
           onChange={handleChange}
+          inputProps={{ MenuProps: { disableScrollLock: true } }}
         >
           <MenuItem value={"Genre"}>Genre</MenuItem>
           <MenuItem value={"Movie"}>Movie</MenuItem>
@@ -69,7 +70,7 @@ const Search = ({ handleUpdate }) => {
           type="submit"
           variant="contained"
           size="medium"
-          sx={{ padding: "14px 24px", marginLeft: "12px" }}
+          sx={{ padding: "12px 28px", marginLeft: "12px" }}
         >
           Search
         </Button>
