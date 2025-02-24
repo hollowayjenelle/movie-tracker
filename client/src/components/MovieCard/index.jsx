@@ -9,6 +9,8 @@ import {
   Rating,
   Box,
 } from "@mui/material";
+import StarRateIcon from "@mui/icons-material/StarRate";
+import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import RatingDialog from "../RatingDialog";
 import { addToWatched } from "../../store/slices/watchedMovieSlice";
@@ -45,34 +47,61 @@ const MovieCard = ({
     dispatch(addToWatched(watchedMovie));
   };
   return (
-    <Card sx={{ maxWidth: 300 }}>
+    <Card
+      sx={{
+        maxWidth: 300,
+        borderRadius: "12px",
+        paddingBottom: "30px",
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: "column",
+      }}
+    >
       <CardMedia
         image={`https://image.tmdb.org/t/p/original${imageURL}`}
         title={title}
         sx={{ height: 350, width: 300 }}
       />
       <CardContent>
-        <Typography sx={{}}>{title}</Typography>
-        <Typography>{releaseDate}</Typography>
-        <Typography>
-          {voteAvg.toFixed(1)} - {voteCount}
+        <Typography variant="h3" sx={{ marginBottom: 1 }}>
+          {title}
         </Typography>
-        <Box>
-          {hasWatched && (
+        <Typography variant="body1">
+          Released: {moment(releaseDate).format("MMM Do YYYY")}
+        </Typography>
+        <Box sx={{ display: "flex", alignItems: "flex-start" }}>
+          <StarRateIcon color="secondary" sx={{ fontSize: 16 }} />
+          <Typography variant="caption" sx={{ marginLeft: "4px" }}>
+            {voteAvg.toFixed(1)} - {voteCount} reviews
+          </Typography>
+        </Box>
+        <Box sx={{ marginTop: 1, display: "flex", alignItems: "flex-end" }}>
+          <Typography variant="body1" sx={{ marginRight: 1 }}>
+            Your Rating:{" "}
+          </Typography>
+          {hasWatched ? (
             <Rating
               name="user-rating"
               defaultValue={hasWatched.user_rating}
               precision={0.5}
               readOnly
             />
+          ) : (
+            <Typography variant="body1"> not rated yet</Typography>
           )}
         </Box>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{ justifyContent: "center" }}>
         {hasWatched ? (
           <Button disabled>Already Watched and Rated!</Button>
         ) : (
-          <Button onClick={handleOpenDialog}>Add to Watch List</Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleOpenDialog}
+          >
+            Add to Watch List
+          </Button>
         )}
       </CardActions>
       <RatingDialog
