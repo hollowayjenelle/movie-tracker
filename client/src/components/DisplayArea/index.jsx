@@ -49,6 +49,7 @@ const DisplayArea = ({ dataset }) => {
           {displayedMovies.map((movie) => (
             <MovieCard
               key={movie.id}
+              id={movie.id}
               title={movie.title}
               imageURL={movie.poster}
               releaseDate={movie["release_date"]}

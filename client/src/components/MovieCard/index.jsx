@@ -9,11 +9,21 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import RatingDialog from "../RatingDialog";
+import { addToWatched } from "../../store/slices/watchedMovieSlice";
 
-const MovieCard = ({ title, imageURL, releaseDate, voteAvg, voteCount }) => {
+const MovieCard = ({
+  title,
+  imageURL,
+  releaseDate,
+  voteAvg,
+  voteCount,
+  id,
+  userRating = null,
+}) => {
   const watchedMovies = useSelector((state) => state.watchedMovies.movies);
   const [rating, setRating] = useState(2);
   const [openDialog, setOpenDialog] = useState(false);
+  const dispatch = useDispatch();
   const hasWatched = watchedMovies.find((movie) => movie.title === title);
 
   const handleOpenDialog = () => setOpenDialog(true);
@@ -21,7 +31,17 @@ const MovieCard = ({ title, imageURL, releaseDate, voteAvg, voteCount }) => {
     setOpenDialog(false);
   };
   const handleAddWatched = () => {
-    console.log("Time to add to watched list");
+    setOpenDialog(false);
+    const watchedMovie = {
+      id: id,
+      title: title,
+      poster: imageURL,
+      release_date: releaseDate,
+      vote_average: voteAvg,
+      vote_count: voteCount,
+      user_rating: rating,
+    };
+    dispatch(addToWatched(watchedMovie));
   };
   return (
     <Card sx={{ maxWidth: 300 }}>
