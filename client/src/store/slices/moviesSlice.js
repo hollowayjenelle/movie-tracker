@@ -1,47 +1,73 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAll, findByTitle } from "../../services/movies.service";
-import { findByActor } from "../../services/actors.service";
-import { findByGenre } from "../../services/genres.service";
+import { getAllMovies } from "../thunks/getAllMoviesthunk";
+import { getByActor } from "../thunks/getByActorthunk";
+import { getByGenre } from "../thunks/getByGenrethunk";
+import { getByTitle } from "../thunks/getByTitlethunk";
 
 const initialState = {
-  allMovies: getAll().then((response) => {
-    return response.data;
-  }),
+  allMovies: [],
+  loading: false,
+  error: null,
 };
 
 export const moviesSlice = createSlice({
   name: "movies",
   initialState,
-  reducers: {
-    getAllMovies: () => {
-      getAll().then((response) => {
-        state.allMovies = response.data;
-      });
-    },
-    getByActor: (state, action) => {
-      findByActor(action.payload).then((response) => {
-        const data = response.data;
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getAllMovies.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getAllMovies.fulfilled, (state, action) => {
+        state.allMovies = action.payload;
+        state.loading = false;
+      })
+      .addCase(getAllMovies.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getByActor.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getByActor.fulfilled, (state, action) => {
+        const data = action.payload;
         let movies = [];
         data.forEach((actor) => {
           movies = movies.concat(actor.movies);
         });
         state.allMovies = movies;
+        state.loading = false;
+      })
+      .addCase(getByActor.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getByGenre.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getByGenre.fulfilled, (state, action) => {
+        state.allMovies = action.payload;
+        state.loading = false;
+      })
+      .addCase(getByGenre.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getByTitle.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getByTitle.fulfilled, (state, action) => {
+        state.allMovies = action.payload;
+        state.loading = false;
+      })
+      .addCase(getByTitle.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
-    },
-    getByGenre: (state, action) => {
-      findByGenre(action.payload).then((response) => {
-        state.allMovies = response.data[0].movies;
-      });
-    },
-    getByMovieTitle: (state, action) => {
-      findByTitle(action.payload).then((response) => {
-        state.allMovies = response.data;
-      });
-    },
   },
 });
 
-export const { getAllMovies, getByActor, getByGenre, getByMovieTitle } =
-  moviesSlice.actions;
+export const { getByMovieTitle } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

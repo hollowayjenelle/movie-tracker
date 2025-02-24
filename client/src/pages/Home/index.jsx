@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Search from "../../components/Search";
 import DisplayArea from "../../components/DisplayArea";
-import { getAll } from "../../services/movies.service";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllMovies } from "../../store/thunks/getAllMoviesthunk";
 
 const HomePage = () => {
-  const [currentData, setCurrentData] = useState([]);
-  console.log(currentData);
+  const currentData = useSelector((state) => state.movies.allMovies);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getAll().then((response) => {
-      setCurrentData(response.data);
-    });
+    dispatch(getAllMovies());
   }, []);
 
   return (
     <div>
-      <Search handleUpdate={setCurrentData} />
+      <Search />
       <DisplayArea dataset={currentData} />
     </div>
   );
