@@ -4,7 +4,6 @@ import Genre from "../models/genre.js";
 
 const getAllMoviesByGenre = (req, res) => {
   const genre = req.query.genre;
-  console.log(genre);
   Genre.findAll({
     attributes: { exclude: ["createdAt", "updatedAt"] },
     where: {
@@ -15,13 +14,10 @@ const getAllMoviesByGenre = (req, res) => {
     include: Movie,
   })
     .then((result) => {
-      return res.json(result);
+      return res.status(200).json(result);
     })
     .catch((error) => {
-      console.log(error);
-      return res.json({
-        message: "Unable to fetch records!",
-      });
+      return res.status(500).json(error.message);
     });
 };
 
