@@ -7,7 +7,7 @@ export const connectDB = async () => {
     await sequelize.authenticate();
     console.log("Connection has been established successfully.");
 
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
     console.log("Tables created successfully");
 
     associate();

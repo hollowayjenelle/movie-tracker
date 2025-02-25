@@ -11,12 +11,11 @@ export const getAllMovies = (req, res) => {
     where: condition,
   })
     .then((result) => {
-      return res.json(result);
+      return res.status(200).json(result);
     })
     .catch((error) => {
-      console.log(error);
-      return res.json({
-        message: "Unable to fetch records!",
+      return res.status(500).json({
+        message: error.message,
       });
     });
 };
