@@ -40,7 +40,13 @@ const RatingDialog = ({
       onClose={onClose}
       open={open}
       sx={{
-        ".MuiDialog-paper": { height: 150, width: 400, alignItems: "center" },
+        ".MuiDialog-paper": {
+          height: 170,
+          width: 400,
+          alignItems: "center",
+          overflow: "hidden",
+          textAlign: "center",
+        },
       }}
     >
       <DialogTitle>How would you rate {movieTitle}?</DialogTitle>

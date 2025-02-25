@@ -14,7 +14,7 @@ const WatchedMoviesPage = () => {
         variant="h1"
         sx={{ marginTop: 10, marginBottom: 3, padding: 2 }}
       >
-        Your Watched Movies
+        Your Watched Movies - {watchedMovies.length} movies
       </Typography>
       <DisplayArea dataset={watchedMovies} />
     </div>

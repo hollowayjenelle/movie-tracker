@@ -36,13 +36,17 @@ const DisplayArea = ({ dataset }) => {
         next={handleChange}
         hasMore={page < pages}
         loader={<h4>Loading</h4>}
-        endMessage={<p>That's all folks! No more movies to see!</p>}
+        endMessage={
+          <p style={{ textAlign: "center" }}>
+            That's all folks! No more movies to see!
+          </p>
+        }
       >
         <Box
           className="content-container"
           sx={{
             display: "grid",
-            gridTemplateColumns: "auto auto auto auto",
+            gridTemplateColumns: "auto auto auto",
             gap: "20px",
           }}
         >

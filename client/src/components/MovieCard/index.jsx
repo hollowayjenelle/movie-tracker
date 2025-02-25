@@ -60,7 +60,7 @@ const MovieCard = ({
       <CardMedia
         image={`https://image.tmdb.org/t/p/original${imageURL}`}
         title={title}
-        sx={{ height: 350, width: 300 }}
+        sx={{ height: 350, width: "100%" }}
       />
       <CardContent>
         <Typography variant="h3" sx={{ marginBottom: 1 }}>
