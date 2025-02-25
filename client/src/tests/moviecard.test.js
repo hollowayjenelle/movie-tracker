@@ -4,15 +4,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import MovieCard from "../components/MovieCard";
 import { store } from "../store/store";
 import { Provider } from "react-redux";
-
-const mockMovie = {
-  id: 762509,
-  title: "Mufasa: The Lion King",
-  poster: "/9bXHaLlsFYpJUutg4E6WXAjaxDi.jpg",
-  release_date: "2024-12-18",
-  vote_average: 7.453,
-  vote_count: 1356,
-};
+import { mockMovie } from "./mocks";
 
 describe("Movie Card Component", () => {
   it("should render movie details", () => {

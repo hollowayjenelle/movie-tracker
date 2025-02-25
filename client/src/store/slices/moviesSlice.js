@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getAllMovies } from "../thunks/getAllMoviesthunk";
 import { getByActor } from "../thunks/getByActorthunk";
 import { getByGenre } from "../thunks/getByGenrethunk";
-import { getByTitle } from "../thunks/getByTitlethunk";
+import { getByTitle } from "../thunks/getByTitlethunk.js";
 
 const initialState = {
   allMovies: [],
@@ -67,7 +67,5 @@ export const moviesSlice = createSlice({
       });
   },
 });
-
-export const { getByMovieTitle } = moviesSlice.actions;
 
 export default moviesSlice.reducer;
