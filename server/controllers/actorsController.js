@@ -8,11 +8,17 @@ export const getAllMoviesByActor = (req, res) => {
     attributes: { exclude: ["createdAt", "updatedAt"] },
     where: {
       name: {
-        [Op.substring]: actor,
+        [Op.iLike]: `%${actor}%`,
       },
     },
-    include: Movie,
+    include: [
+      {
+        model: Movie,
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
+    ],
   })
+
     .then((result) => {
       return res.status(200).json(result);
     })

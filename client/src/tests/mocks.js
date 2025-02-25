@@ -8,12 +8,18 @@ export const mockMovie = {
 };
 
 export const mockGenre = {
-  id: 950396,
-  poster: "/7iMBZzVZtG0oBug4TfqDb9ZxAOa.jpg",
-  release_date: "2025-02-13",
-  title: "The Gorge",
-  vote_average: 7.834,
-  vote_count: 1226,
+  id: 10749,
+  movies: [
+    {
+      id: 950396,
+      poster: "/7iMBZzVZtG0oBug4TfqDb9ZxAOa.jpg",
+      release_date: "2025-02-13",
+      title: "The Gorge",
+      vote_average: 7.834,
+      vote_count: 1226,
+    },
+  ],
+  name: "Romance",
 };
 
 export const mockMovies = [

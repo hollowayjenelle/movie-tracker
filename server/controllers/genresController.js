@@ -11,8 +11,14 @@ const getAllMoviesByGenre = (req, res) => {
         [Op.iLike]: genre,
       },
     },
-    include: Movie,
+    include: [
+      {
+        model: Movie,
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
+    ],
   })
+
     .then((result) => {
       return res.status(200).json(result);
     })

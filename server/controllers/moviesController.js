@@ -3,9 +3,7 @@ import { Op } from "sequelize";
 
 export const getAllMovies = (req, res) => {
   const title = req.query.title;
-  const condition = title
-    ? { title: { [Op.substring]: req.query.title } }
-    : null;
+  const condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
   Movie.findAll({
     attributes: { exclude: ["createdAt", "updatedAt"] },
     where: condition,

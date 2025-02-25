@@ -27,7 +27,7 @@ describe("Search component", () => {
     expect(screen.getByText("Movie")).toBeInTheDocument();
     expect(screen.getByRole("button")).toHaveTextContent("Search");
   });
-  it("should display all movies that match search word - search by movie", async () => {
+  it("should get all movies that match search word - search by movie", async () => {
     render(
       <Provider store={store}>
         <Search />
@@ -49,7 +49,7 @@ describe("Search component", () => {
       expect(screen.getByText("Mufasa: The Lion King")).toBeInTheDocument();
     });
   });
-  it("should display all movies that match search word - search by genre", async () => {
+  it("should get all movies that match search word - search by genre", async () => {
     render(
       <Provider store={store}>
         <Search />
@@ -74,7 +74,7 @@ describe("Search component", () => {
       expect(screen.getByText("The Gorge")).toBeInTheDocument();
     });
   });
-  it("should display all movies that match search word - search by actor", async () => {
+  it("should get all movies that match search word - search by actor", async () => {
     render(
       <Provider store={store}>
         <Search />
