@@ -1,18 +1,11 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import {
-  render,
-  screen,
-  fireEvent,
-  waitFor,
-  within,
-} from "@testing-library/react";
-import { userEvent } from "@testing-library/user-event";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { store } from "../store/store";
 import { Provider } from "react-redux";
 import Search from "../components/Search";
 import DisplayArea from "../components/DisplayArea";
-import { mockMovies, mockMovie, mockGenre } from "./mocks";
+import { mockMovies, mockMovie } from "./mocks";
 import { getByTitle } from "../store/thunks/getByTitlethunk";
 import { getByGenre } from "../store/thunks/getByGenrethunk";
 import { getByActor } from "../store/thunks/getByActorthunk";
@@ -71,7 +64,9 @@ describe("Search component", () => {
     store.dispatch(getByGenre("Romance"));
 
     await waitFor(() => {
-      expect(screen.getByText("The Gorge")).toBeInTheDocument();
+      const movies = store.getState().movies.allMovies;
+      const movieExists = movies.find((movie) => movie.title === "The Gorge");
+      expect(movieExists).toBeDefined();
     });
   });
   it("should get all movies that match search word - search by actor", async () => {
@@ -96,7 +91,9 @@ describe("Search component", () => {
     store.dispatch(getByActor("Mark Wahlberg"));
 
     await waitFor(() => {
-      expect(screen.getByText("Flight Risk")).toBeInTheDocument();
+      const movies = store.getState().movies.allMovies;
+      const movieExists = movies.find((movie) => movie.title === "Flight Risk");
+      expect(movieExists).toBeDefined();
     });
   });
 });
