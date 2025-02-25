@@ -100,7 +100,7 @@ const MovieCard = ({
             color="primary"
             onClick={handleOpenDialog}
           >
-            Add to Watch List
+            Add to Watched List
           </Button>
         )}
       </CardActions>

@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  movies: JSON.parse(localStorage.getItem("watchedMovies")) || [],
+  movies:
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("watchedMovies")) || []
+      : [],
 };
 export const watchedMoviesSlice = createSlice({
   name: "watchedMovies",
