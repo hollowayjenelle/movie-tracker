@@ -1,0 +1,24 @@
+{
+  "development": {
+    "user": "admin",
+    "password": "Iaacssajm$",
+    "host": "localhost",
+    "port": "5432",
+    "database": "movie_tracker",
+    "dialect": "postgres"
+  },
+  "production": {
+    "user": "ubcmd8g2dj93vo",
+    "password": "pf4ca92606b513f7fc661510937dc59aba005feb46d76a3d899188c58b78ee322",
+    "host": "cd5gks8n4kb20g.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com",
+    "port": "5432",
+    "database": "dd8047aujhvq7r",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
+  }
+}
