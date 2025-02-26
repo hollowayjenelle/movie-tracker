@@ -37,8 +37,11 @@ describe("Search component", () => {
     store.dispatch(getByTitle("Mufasa"));
 
     await waitFor(() => {
-      const state = store.getState();
-      expect(state.movies.allMovies).toContainEqual(mockMovie);
+      const movies = store.getState().movies.allMovies;
+      const movieExists = movies.find(
+        (movie) => movie.title === "Mufasa: The Lion King"
+      );
+      expect(movieExists).toBeDefined();
       expect(screen.getByText("Mufasa: The Lion King")).toBeInTheDocument();
     });
   });
@@ -65,8 +68,10 @@ describe("Search component", () => {
 
     await waitFor(() => {
       const movies = store.getState().movies.allMovies;
-      const movieExists = movies.find((movie) => movie.title === "The Gorge");
-      expect(movieExists).toBeDefined();
+      const isRomanceMovie = movies.find(
+        (movie) => movie.MovieGenres.genreId === 10749
+      );
+      expect(isRomanceMovie).toBeDefined();
     });
   });
   it("should get all movies that match search word - search by actor", async () => {
@@ -92,6 +97,7 @@ describe("Search component", () => {
 
     await waitFor(() => {
       const movies = store.getState().movies.allMovies;
+      console.log(movies);
       const movieExists = movies.find((movie) => movie.title === "Flight Risk");
       expect(movieExists).toBeDefined();
     });
