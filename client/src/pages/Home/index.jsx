@@ -17,7 +17,13 @@ const HomePage = () => {
     <div>
       <NavBar />
       <Search />
-      <DisplayArea dataset={currentData} />
+      {currentData.length > 0 ? (
+        <DisplayArea dataset={currentData} />
+      ) : (
+        <p style={{ textAlign: "center" }}>
+          Sorry! There are no movies that match your current search :/
+        </p>
+      )}
     </div>
   );
 };

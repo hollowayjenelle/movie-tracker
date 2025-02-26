@@ -38,7 +38,7 @@ const DisplayArea = ({ dataset }) => {
         loader={<h4>Loading</h4>}
         endMessage={
           <p style={{ textAlign: "center" }}>
-            That's all folks! No more movies to see!
+            That is all folks! No more movies to see!
           </p>
         }
       >

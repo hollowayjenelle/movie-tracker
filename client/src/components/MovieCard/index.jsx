@@ -49,7 +49,7 @@ const MovieCard = ({
   return (
     <Card
       sx={{
-        maxWidth: 300,
+        width: 300,
         borderRadius: "12px",
         paddingBottom: "30px",
         display: "flex",
