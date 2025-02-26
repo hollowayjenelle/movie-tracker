@@ -13,12 +13,6 @@
     "host": "cd5gks8n4kb20g.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com",
     "port": "5432",
     "database": "dd8047aujhvq7r",
-    "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      }
-    }
+    "dialect": "postgres"
   }
 }
