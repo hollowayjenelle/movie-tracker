@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const http = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: "https://movie-tracker-prod-42ea18da9dc1.herokuapp.com/api",
   headers: {
     "Content-Type": "application/json",
   },
