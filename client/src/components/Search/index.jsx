@@ -11,6 +11,7 @@ import {
 import { getByTitle } from "../../store/thunks/getByTitlethunk";
 import { getByActor } from "../../store/thunks/getByActorthunk";
 import { getByGenre } from "../../store/thunks/getByGenrethunk";
+import { getAllMovies } from "../../store/thunks/getAllMoviesthunk";
 import { useDispatch } from "react-redux";
 
 const Search = () => {
@@ -22,12 +23,21 @@ const Search = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+    if (name === "searchType") {
+      setSearchData({ [name]: value, searchWord: "" });
+      return;
+    }
     setSearchData({ ...searchData, [name]: value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const { searchType, searchWord } = searchData;
+
+    if (!searchWord) {
+      dispatch(getAllMovies());
+      return;
+    }
 
     switch (searchType) {
       case "Movie":
@@ -72,7 +82,6 @@ const Search = () => {
           </MenuItem>
         </Select>
         <TextField
-          required
           id="search-field"
           placeholder="Search"
           value={searchData.searchWord}
