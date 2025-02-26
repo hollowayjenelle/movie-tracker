@@ -5,8 +5,7 @@
   "scripts": {
     "test": "jest",
     "start": "node server",
-    "dev": "SET NODE_ENV=development&nodemon server",
-    "postinstall": "cd ../client && npm install && npm run build"
+    "dev": "SET NODE_ENV=development&nodemon server"
   },
   "keywords": [],
   "author": "",
